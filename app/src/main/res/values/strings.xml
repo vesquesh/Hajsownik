@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Hajsownik</string>
+    <string name="naz">Nazwa użytkownika:</string>
+    <string name="has">Hasło:</string>
+    <string name="zalog">Zaloguj</string>
+    <string name="log">Logowanie</string>
+    <string name="zarej">Rejestracja</string>
+    <string name="reg">Kliknij tutaj, aby zarejestrować.</string>
+    <string name="log2">Wróć do logowania.</string>
+    <string name="reg2">Zarejestruj</string>
+    <string name="wyl">Wyloguj</string>
+    <string name="has2">Powtórz hasło:</string>
+    <string name="wit">Witaj !</string>
+    <string name="lis">Listy zakupów</string>
+    <string name="nal">Należności</string>
+    <string name="uz">Uznania</string>
+    <string name="uz1">Kto</string>
+    <string name="uz2">Ile</string>
+    <string name="nal1">Komu</string>
+    <string name="sum1">Suma długów do ściągnięcia: </string>
+    <string name="sum2">0 zł</string>
+    <string name="sum3">W sumie do zapłaty: </string>
+</resources>
