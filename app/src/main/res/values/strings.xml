@@ -17,7 +17,7 @@
     <string name="uz1">Kto</string>
     <string name="uz2">Ile</string>
     <string name="nal1">Komu</string>
-    <string name="sum1">Suma długów do ściągnięcia: </string>
+    <string name="sum1">Suma długów: </string>
     <string name="sum2">0 zł</string>
     <string name="sum3">W sumie do zapłaty: </string>
 </resources>

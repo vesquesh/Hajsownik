@@ -14,7 +14,7 @@ public class Menu extends AppCompatActivity {
 
     Button relogButton,listaButton,uznButton,zalButton;
     TextView witaj;
-    String authToken;
+    //String authToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,10 @@ public class Menu extends AppCompatActivity {
         witaj=findViewById(R.id.textView3);
 
         Intent intent=getIntent();
-        String login = intent.getStringExtra("login");
-        String login2="Witaj "+login;
-        authToken=intent.getStringExtra("token");
-        witaj.setText(login2);
+        String login="Witaj "+intent.getStringExtra("login");
+        final String token = intent.getStringExtra("token");
+        final String type = intent.getStringExtra("type");
+        witaj.setText(login);
 
 
         relogButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,8 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Menu.this, Uznania.class);
-                //intent.putExtra("token",authToken.trim());
+                intent.putExtra("token",token);
+                intent.putExtra("type",type);
                 startActivity(intent);
             }
         });
@@ -62,7 +63,8 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Menu.this, Zadluzenie.class);
-                //intent.putExtra("token",authToken.trim());
+                intent.putExtra("token",token);
+                intent.putExtra("type",type);
                 startActivity(intent);
             }
         });

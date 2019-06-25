@@ -11,18 +11,16 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.mobile.hajsownik.R;
-import com.mobile.hajsownik.pojo.Auth;
+import com.mobile.hajsownik.presenter.LoginPresenter;
+import com.mobile.hajsownik.views.LoginView;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements LoginView {
 
     Button loginButton;
     TextView registerLink;
     EditText loginText,passwordText;
+    LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,50 +31,13 @@ public class Login extends AppCompatActivity {
         loginText=findViewById(R.id.usernameBox);
         passwordText=findViewById(R.id.passwordBox);
 
+        presenter=new LoginPresenter(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String login = loginText.getText().toString().trim();
-                String haslo = passwordText.getText().toString().trim();
+                presenter.login(loginText.getText().toString().trim(),passwordText.getText().toString().trim());
 
-                if(login.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Nazwa użytkownika wymagana", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    if(haslo.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "Hasło jest wymagane", Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        /*
-                        Call<Auth> call = RetrofitClient
-                                .getInstance()
-                                .getApi()
-                                .loginUser(login,haslo);
-                        call.enqueue(new Callback<Auth>() {
-                            @Override
-                            public void onResponse(Call<Auth> call, Response<Auth> response) {
-                                Toast.makeText(Login.this,response.body().toString(),Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Login.this, Menu.class);
-                                Auth odp = response.body();
-                                intent.putExtra("login",loginText.getText().toString().trim());
-                                intent.putExtra("token",odp.getAccessToken().toString().trim());
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Pomyślnie zalogowano.", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onFailure(Call<Auth> call, Throwable t) {
-                                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                            }
-                        });
-                        */
-                        Intent intent = new Intent(Login.this, Menu.class);
-                        intent.putExtra("login",loginText.getText().toString().trim());
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Pomyślnie zalogowano.", Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
         });
 
@@ -91,5 +52,19 @@ public class Login extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void registerMessage(String mess) {
+        Toast.makeText(this,mess,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void logowanie(String name,String token,String type) {
+        Intent intent = new Intent(Login.this, Menu.class);
+        intent.putExtra("login",name);
+        intent.putExtra("token",token);
+        intent.putExtra("type",type);
+        startActivity(intent);
     }
 }
